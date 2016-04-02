@@ -5,7 +5,7 @@ import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.ActivityInstrumentationTestCase2;
 
-import com.handstandsam.httpmocking.util.AssetReaderUtil;
+import com.handstandsam.wiremockwebserver.AssetReaderUtil;
 import com.joshskeen.weatherview.BuildConfig;
 import com.joshskeen.weatherview.MainActivity;
 import com.joshskeen.weatherview.R;
@@ -61,7 +61,7 @@ public class MockWebServerEnqueueTest extends ActivityInstrumentationTestCase2<M
     @Test
     public void testMockWebServerEnqueue() {
         logger.debug("testWiremock");
-        String assetJson = AssetReaderUtil.asset(getActivity(), "atlanta-conditions.json");
+        String assetJson = AssetReaderUtil.assetAsString(getActivity(), "atlanta-conditions.json");
 
         //script MockWebServer to return this JSON
         mMockWebServer.enqueue(new MockResponse().setBody(assetJson));

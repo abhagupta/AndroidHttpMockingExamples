@@ -27,7 +27,7 @@ import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
-import static com.handstandsam.httpmocking.util.AssetReaderUtil.asset;
+import static com.handstandsam.wiremockwebserver.AssetReaderUtil.assetAsString;
 import static org.hamcrest.Matchers.containsString;
 
 
@@ -73,7 +73,7 @@ public class MockWebServerDispatcherTest extends ActivityInstrumentationTestCase
             @Override
             public MockResponse dispatch(RecordedRequest request) throws InterruptedException {
                 if (request.getPath().equals("/api/840dbdf2737a7ff9/conditions/q/CA/atlanta.json")) {
-                    String jsonBody = asset(activity, "atlanta-conditions.json");
+                    String jsonBody = assetAsString(activity, "atlanta-conditions.json");
                     return new MockResponse().setResponseCode(200).setBody(jsonBody);
                 }
                 return new MockResponse().setResponseCode(404);

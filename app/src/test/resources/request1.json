@@ -1,0 +1,16 @@
+{
+  "body": [],
+  "bodySize": 0,
+  "chunkSizes": [],
+  "headers": [
+    "User-Agent: Dalvik/2.1.0 (Linux; U; Android 6.0; Android SDK built for x86_64 Build/MASTER)",
+    "Host: 127.0.0.1:9998",
+    "Connection: Keep-Alive",
+    "Accept-Encoding: gzip"
+  ],
+  "method": "GET",
+  "path": "/some/thing",
+  "requestLine": "GET /some/thing HTTP/1.1",
+  "sequenceNumber": 0,
+  "sslProtocol": null
+}

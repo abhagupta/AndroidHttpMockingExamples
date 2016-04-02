@@ -46,6 +46,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
     compile "org.slf4j:slf4j-api:1.7.12"
+    compile 'org.slf4j:slf4j-android:1.7.14'
 
     //------ Android Test Dependencies ------
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
@@ -54,29 +55,12 @@ dependencies {
         exclude group: 'junit', module: 'junit'
     }
     androidTestCompile 'com.android.support.test.espresso:espresso-intents:2.2.1'
-    androidTestCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
 
     //MockWebServer - Version 2.2 of mockwebserver doesn't work because of an issue, so forcing v2.1 - https://github.com/square/okhttp/issues/1069
-    androidTestCompile('com.squareup.okhttp:mockwebserver:2.1.0') {
+    compile('com.squareup.okhttp:mockwebserver:2.1.0') {
         exclude module: 'okhttp'
     }
-
-    //WireMock
-    androidTestCompile("com.github.tomakehurst:wiremock:2.0.8-beta") {
-        //Allows us to use the Android version of Apache httpclient instead
-        exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-
-        //Resolves the Duplicate Class Exception
-        //Error:Execution failed for task ':app:transformClassesWithJarMergingForDebugAndroidTest'.
-        //       > com.android.build.api.transform.TransformException: java.util.zip.ZipException: duplicate entry: org/objectweb/asm/AnnotationVisitor.class
-        exclude group: 'asm', module: 'asm'
-
-        //Fixes conflict with Android's version
-        //Warning:Dependency org.json:json:20090211 is ignored for debugAndroidTest as it may be conflicting with the internal version provided by Android.
-        //In case of problem, please repackage with jarjar to change the class packages
-        exclude group: 'org.json', module: 'json'
-    }
-    androidTestCompile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 }
 configurations {
     all*.exclude group: 'commons-logging', module: 'commons-logging'

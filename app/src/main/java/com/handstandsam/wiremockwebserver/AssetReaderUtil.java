@@ -1,17 +1,18 @@
-package com.handstandsam.httpmocking.util;
+package com.handstandsam.wiremockwebserver;
 
 import android.content.Context;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class AssetReaderUtil {
 
-    public static String asset(Context context, String assetPath) {
+    public static String assetAsString(Context context, String assetPath) {
         try {
             StringBuilder buf = new StringBuilder();
-            InputStream inputStream = context.getAssets().open("body_files/" + assetPath);
+            InputStream inputStream = context.getAssets().open(assetPath);
             return inputStreamToString(inputStream, "UTF-8");
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -30,5 +31,21 @@ public class AssetReaderUtil {
             builder.append(buffer, 0, length);
         }
         return builder.toString();
+    }
+
+    public static String readRawTextFile(Context ctx, int resId) {
+        try {
+            InputStream inputStream = ctx.getResources().openRawResource(resId);
+
+            String line;
+            BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder total = new StringBuilder();
+            while ((line = r.readLine()) != null) {
+                total.append(line);
+            }
+            return total.toString();
+        } catch (IOException e) {
+            return null;
+        }
     }
 }
